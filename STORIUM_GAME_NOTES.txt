@@ -1,0 +1,63 @@
+STORIUM
+- Players can create their own character, or the narrator can provide them pre-made.
+- Naraotr: to keep the game moving by starting scenes and laying out dramatic challenges for you and the other players to overcome.
+
+CARDS
+- NATURE CARDS (namespace:"chartype"): Every character has a Nature card, which serves as a shorthand description of their personality. You don’t directly play your Nature card, but rather it serves to help you and others build a mental image of your character. Mary’s Nature is “Pilot.”
+- STREGNTH CARD "polarity": trength cards represent abilities, skills, or traits that tend to give the character an advantage. Every character starts with a single type of Strength card, but in the course of play these Strengths can grow and change in whatever way makes sense for the story. Mary’s current Strength is “Outdoorswoman.”
+- WEAKNESS CARD: the opposite of Strength cards. They represent shortcomings or flaws that put the character at a disadvantage. Just like with Strength cards, every character starts with a single type of Weakness but gains new ones as play progresses. Mary’s current Weakness is “Loner.”
+- SUBPLOT CARDS: describe a character’s personal motivation — the thing that really drives them. Subplots are great because they help you give depth and purpose to your character’s actions in the story. When you play all your Subplot cards, you get rewarded with a bonus card.
+
+Segment --> gets card
+
+STORY PROCEEDING STUFF
+Storium games are divided up into acts and scenes. In previous scenes the protagonists fought their way through both the elements and their own interpersonal conflicts. After setting out to find help the group became lost in a terrible blizzard. They only survived by running across an abandoned camp from which they salvaged coats and torches.
+
+
+
+TAGS in JSON:
+polarity: integer
+      -1 for weakness cards, 1 for strength cards, 0 for all other cards
+author_user_pid: <UserPid>
+      not necessarily someone in the game, could be the world author for world
+      cards.
+success_stakes: string
+      the narrator's description of what happens if the challenge is met with
+      successful outcome. the ui for this field is prepopulated with
+      suggested_success_stakes and the user can use it as-is or edit it. this is
+      a contextual property.
+    failure_stakes: string
+      like success_stakes, but for the failure/setback outcome. this is a
+      contextual property.
+suggested_success_stakes: string
+      default initial value for success_stakes
+    suggested_failure_stakes: string
+      default initial value for failure_stakes
+    suggested_challenge_points: integer
+      default initial value for challenge_points
+**note: has default values for outcomes too sometimes"
+suggested_strength_card_id: <CardId>
+      to expedite character creation, *for nature cards (chartype)*, during
+      character creation choosing this card will pre-populate the strength card
+      with this suggestion, which the user can override.
+    suggested_weakness_card_id: <CardId>
+      similar to suggested_strength_card_id but for the weakness card
+
+Note that the card namespace strings are different from the names used on the
+  user-facing UI, as seen in the differences between <CardNamespace> and
+  <CardPrettyNamespace>
+Example:
+ "namespace": "chartype",
+ "pretty_namespace": "Nature",
+
+
+scene --> enteries (list and content of scene) (iterate over each entry, compute checksum and process the entry using process_entry).
+
+- character_id = "character{character_id_seq}"
+- A unique segment ID will be associated with each of the CharacterInfo.
+
+MCQ PAPER:
+- By leveraging the MCQ approach, they introduce a storyline guidance model that predicts three types of entities
+	* characters
+	* events
+	* places
